@@ -18,10 +18,11 @@ export const getProveedorById = async (id) => {
   return await axios.get(`${BASE_URL}/get/${id}`);
 };
 
-export const updateProveedor = async (id, data) => {
-  // Endpoint: /proveedor/update/{id}
-  return await axios.put(`${BASE_URL}/update/${id}`, data);  // Agregar el ID en la URL
+export const updateProveedor = async (data) => {
+  // Endpoint: /proveedor/update
+  return await axios.put(`${BASE_URL}/update`, data);  // Enviar todo el objeto `data` que incluye el ID
 };
+
 
 export const deleteProveedor = async (id) => {
   // Endpoint: /proveedor/delete/{id}

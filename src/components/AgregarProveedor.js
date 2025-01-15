@@ -20,6 +20,7 @@ const AgregarProveedor = () => {
     try {
       await createProveedor(formData);  // Llamar a la función para crear el proveedor
       alert('Proveedor creado con éxito.');
+      window.close();  // Cerrar la ventana emergente después de guardar
       navigate('/proveedores');  // Redirigir a la lista de proveedores
     } catch (error) {
       console.error('Error al crear proveedor:', error);

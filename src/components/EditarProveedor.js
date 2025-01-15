@@ -30,19 +30,29 @@ const EditarProveedor = () => {
   }, [id]);
 
   // Manejar la actualización del proveedor
-  const handleSave = async () => {
-    try {
-      await updateProveedor(id, formData);  // Llamar a la función para actualizar el proveedor
-      alert('Proveedor actualizado con éxito.');
-      window.close();  // Cerrar la ventana emergente después de guardar
-      if (window.opener && window.opener.fetchProveedores) {
-        window.opener.fetchProveedores();  // Llamar a la función fetchProveedores de la ventana principal para actualizar la lista
-      }
-    } catch (error) {
-      console.error('Error al actualizar proveedor:', error);
-      alert('Error al actualizar el proveedor.');
+const handleSave = async () => {
+  try {
+    if (!formData.proveedor_id) {
+      alert('El ID del proveedor es inválido.');
+      return;
     }
-  };
+
+    await updateProveedor(formData);  // Enviar datos para actualizar el proveedor
+    alert('Proveedor actualizado con éxito.');
+    
+    // Cerrar la ventana emergente
+    window.close();
+
+    // Actualizar la lista en la ventana principal cuando la ventana emergente se cierra
+    if (window.opener && window.opener.fetchProveedores) {
+      window.opener.fetchProveedores();  // Actualizar la lista de proveedores
+    }
+  } catch (error) {
+    console.error('Error al actualizar proveedor:', error);
+    alert('Error al actualizar el proveedor.');
+  }
+};
+
 
   return (
     <div className="container mt-5">
