@@ -19,8 +19,8 @@ export const getProveedorById = async (id) => {
 };
 
 export const updateProveedor = async (id, data) => {
-  // Endpoint: /proveedor/update
-  return await axios.put(`${BASE_URL}/update`, data);
+  // Endpoint: /proveedor/update/{id}
+  return await axios.put(`${BASE_URL}/update/${id}`, data);  // Agregar el ID en la URL
 };
 
 export const deleteProveedor = async (id) => {
